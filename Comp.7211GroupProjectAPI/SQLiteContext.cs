@@ -16,5 +16,7 @@ namespace Comp._7211GroupProjectAPI
         }
 
         public DbSet<UserModel> Users { get; set; }
+
+        public DbSet<PostModel> Posts { get; set; }
     }
 }
