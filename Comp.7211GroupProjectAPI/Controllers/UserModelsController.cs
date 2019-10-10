@@ -79,7 +79,7 @@ namespace Comp._7211GroupProjectAPI.Controllers
             _context.Users.Add(userModel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUserModel", new { id = userModel.id }, userModel);
+            return CreatedAtAction(nameof(GetUserModel), new { id = userModel.id }, userModel);
         }
 
         // DELETE: api/UserModels/5

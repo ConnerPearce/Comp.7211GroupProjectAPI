@@ -26,6 +26,9 @@ namespace Comp._7211GroupProjectAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<SQLiteContext>(opt => opt.UseInMemoryDatabase("Users"));
+            services.AddDbContext<SQLiteContext>(opt => opt.UseInMemoryDatabase("Posts"));
+            services.AddDbContext<SQLiteContext>(opt => opt.UseInMemoryDatabase("Settings"));
+            services.AddDbContext<SQLiteContext>(opt => opt.UseInMemoryDatabase("Users"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
