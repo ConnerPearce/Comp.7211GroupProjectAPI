@@ -10,7 +10,7 @@ using Comp._7211GroupProjectAPI.Models;
 
 namespace Comp._7211GroupProjectAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/MessageModels")]
     [ApiController]
     public class MessageModelsController : ControllerBase
     {
