@@ -9,7 +9,9 @@ namespace Comp._7211GroupProjectAPI.Models
     {
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
+        [NotNull]
         public int UId { get; set; }
+        [NotNull]
         public string PostDescription { get; set; }
         public int UpVote { get; set; }
         public int DownVote { get; set; }

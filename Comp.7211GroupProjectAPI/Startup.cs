@@ -25,10 +25,7 @@ namespace Comp._7211GroupProjectAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SQLiteContext>(opt => opt.UseInMemoryDatabase("Users"));
-            services.AddDbContext<SQLiteContext>(opt => opt.UseInMemoryDatabase("Posts"));
-            services.AddDbContext<SQLiteContext>(opt => opt.UseInMemoryDatabase("Settings"));
-            services.AddDbContext<SQLiteContext>(opt => opt.UseInMemoryDatabase("Messages"));
+            services.AddDbContext<SQLiteContext>(opt => opt.UseInMemoryDatabase("ProjectDatabase"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

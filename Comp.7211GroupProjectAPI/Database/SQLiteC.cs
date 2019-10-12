@@ -6,13 +6,13 @@ using System.Text;
 
 namespace Comp._7211GroupProjectAPI.Database
 {
-    public class SQLite : ISQLite
+    public class SQLiteC : ISQLite
     {
         public SQLiteConnection GetConnection()
         {
-            var db = "AppDatabase";
+            var db = "ProjectDatabase";
             var path = Path.Combine(System.Environment.GetFolderPath
-                (System.Environment.SpecialFolder.Personal), db);
+                (System.Environment.SpecialFolder.ApplicationData), db);
 
             return new SQLiteConnection(path);
         }

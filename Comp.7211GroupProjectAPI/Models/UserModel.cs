@@ -1,21 +1,37 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Comp._7211GroupProjectAPI.Models
 {
     public class UserModel
     {
         [PrimaryKey, AutoIncrement]
-        public int id { get; set; }
-        public int UId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Dob { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public string Nickname { get; set; }
-        public string Password { get; set; }
+        public Int64 id { get; set; }
+
+        [NotNull]
+        public Int64 UId { get; set; }
+
+        [NotNull]
+        public String FirstName { get; set; }
+
+        [NotNull]
+        public String LastName { get; set; }
+
+        [NotNull]
+        public String Dob { get; set; }
+
+        [NotNull]
+        public String Email { get; set; }
+
+        [NotNull]
+        public String Address { get; set; }
+
+        public String Nickname { get; set; }
+
+        [NotNull]
+        public String Password { get; set; }
     }
 }
