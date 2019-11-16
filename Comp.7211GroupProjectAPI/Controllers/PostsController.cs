@@ -42,36 +42,6 @@ namespace Comp._7211GroupProjectAPI.Controllers
             return posts;
         }
 
-        // PUT: api/Posts/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPosts(int id, Posts posts)
-        {
-            if (id != posts.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(posts).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PostsExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/Posts
         [HttpPost]
         public async Task<ActionResult<Posts>> PostPosts(Posts posts)
@@ -96,11 +66,6 @@ namespace Comp._7211GroupProjectAPI.Controllers
             await _context.SaveChangesAsync();
 
             return posts;
-        }
-
-        private bool PostsExists(int id)
-        {
-            return _context.Posts.Any(e => e.Id == id);
         }
     }
 }

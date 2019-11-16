@@ -21,18 +21,11 @@ namespace Comp._7211GroupProjectAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Settings
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Settings>>> GetSettings()
+        // GET: api/Settings/userID=5
+        [HttpGet("userId={id}")]
+        public async Task<ActionResult<Settings>> GetSettingsByUser(int id)
         {
-            return await _context.Settings.ToListAsync();
-        }
-
-        // GET: api/Settings/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Settings>> GetSettings(int id)
-        {
-            var settings = await _context.Settings.FindAsync(id);
+            var settings = await _context.Settings.Where(e => e.Uid == id).FirstOrDefaultAsync();
 
             if (settings == null)
             {
