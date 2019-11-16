@@ -23,11 +23,11 @@ namespace Comp._7211GroupProjectAPI.Controllers
 
 
 
-        // GET: api/Users/userID=5
-        [HttpGet("{userID=id}")]
-        public async Task<ActionResult<Users>> GetUsers(string id)
+        // GET: api/Users/5
+        [HttpGet("userID={id}&Password={pwrd}")]
+        public async Task<ActionResult<Users>> GetUsers(int id, string pwrd)
         {
-            var users = await _context.Users.Where(e => e.Uid == id).FirstOrDefaultAsync();
+            var users = await _context.Users.FirstAsync(e => e.Uid == id.ToString() && e.Pword == pwrd);
 
             if (users == null)
             {
@@ -65,6 +65,32 @@ namespace Comp._7211GroupProjectAPI.Controllers
             }
 
             return NoContent();
+        }
+
+        // POST: api/Users
+        [HttpPost]
+        public async Task<ActionResult<Users>> PostUsers(Users users)
+        {
+            _context.Users.Add(users);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUsers", new { id = users.Id }, users);
+        }
+
+        // DELETE: api/Users/5
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Users>> DeleteUsers(int id)
+        {
+            var users = await _context.Users.FindAsync(id);
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            _context.Users.Remove(users);
+            await _context.SaveChangesAsync();
+
+            return users;
         }
 
         private bool UsersExists(int id)
