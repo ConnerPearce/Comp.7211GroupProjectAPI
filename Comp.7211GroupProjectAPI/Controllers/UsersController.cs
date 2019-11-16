@@ -67,32 +67,6 @@ namespace Comp._7211GroupProjectAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
-        [HttpPost]
-        public async Task<ActionResult<Users>> PostUsers(Users users)
-        {
-            _context.Users.Add(users);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUsers", new { id = users.Id }, users);
-        }
-
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Users>> DeleteUsers(int id)
-        {
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
-            {
-                return NotFound();
-            }
-
-            _context.Users.Remove(users);
-            await _context.SaveChangesAsync();
-
-            return users;
-        }
-
         private bool UsersExists(int id)
         {
             return _context.Users.Any(e => e.Id == id);
