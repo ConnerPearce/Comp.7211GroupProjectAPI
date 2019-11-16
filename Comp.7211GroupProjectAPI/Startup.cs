@@ -27,7 +27,7 @@ namespace Comp._7211GroupProjectAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-           // services.AddDbContext<Comp7211GroupProjectAPI20191115092109_dbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("GroupAPIContext")));
+            //services.AddDbContext<Comp7211GroupProjectAPI20191115092109_dbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("GroupAPIContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
