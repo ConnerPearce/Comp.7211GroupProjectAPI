@@ -26,7 +26,7 @@ namespace Comp._7211GroupProjectAPI.Controllers
         [HttpGet("userID={user}")]
         public async Task<ActionResult<IEnumerable<Messages>>> GetMessagesByUser(int user)
         {
-            var userMessages = await _context.Messages.Where(e => e.ReceiverId == user).ToListAsync();
+            var userMessages = await _context.Messages.Where(e => e.ReceiverId == user || e.SenderId == user).ToListAsync();
             if (userMessages != null)
                 return Ok(userMessages);
             else
@@ -36,12 +36,18 @@ namespace Comp._7211GroupProjectAPI.Controllers
      
         // POST: api/Messages
         [HttpPost]
-        public async Task<ActionResult<Messages>> PostMessages(Messages messages)
-        {
-            _context.Messages.Add(messages);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetMessages", new { id = messages.Id }, messages);
+        public async Task<ActionResult<string>> PostMessages(Messages messages)
+        { 
+            try
+            {
+                _context.Messages.Add(messages);
+                await _context.SaveChangesAsync();
+                return Ok("Message Sent");
+            }
+            catch
+            {
+                return BadRequest("Message unable to be sent, Try again later");
+            }
         }
     }
 }

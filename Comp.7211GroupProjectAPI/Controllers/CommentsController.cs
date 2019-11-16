@@ -34,12 +34,20 @@ namespace Comp._7211GroupProjectAPI.Controllers
 
         // POST: api/Comments
         [HttpPost]
-        public async Task<ActionResult<Comments>> PostComments(Comments comments)
+        public async Task<ActionResult<string>> PostComments(Comments comments)
         {
-            _context.Comments.Add(comments);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Comments.Add(comments);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetComments", new { id = comments.Id }, comments);
+                return Ok("Comment Added");
+            }
+            catch
+            {
+                return BadRequest("Unable to comment, Try again later");
+            }
+
         }
 
         // DELETE: api/Comments/5

@@ -41,7 +41,7 @@ namespace Comp._7211GroupProjectAPI.Controllers
         // Used to update (Easier, less complicated and easier to specify individual changes)
         // POST: api/Users
         [HttpPost]
-        public async Task<IActionResult> PostUsers(Users users)
+        public async Task<ActionResult<string>> PostUsers(Users users)
         {
             var user = await _context.Users.Where(e => e.Id == users.Id).FirstAsync();
             if (user != null)
@@ -51,10 +51,10 @@ namespace Comp._7211GroupProjectAPI.Controllers
 
                 await _context.SaveChangesAsync();
 
-                return Ok();
+                return Ok("User Info Changed");
             }
             else
-                return NotFound();
+                return NotFound("User Info unable to be changed, Try again later");
         }
     
 

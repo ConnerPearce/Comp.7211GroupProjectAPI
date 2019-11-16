@@ -30,12 +30,20 @@ namespace Comp._7211GroupProjectAPI.Controllers
 
         // POST: api/Posts
         [HttpPost]
-        public async Task<ActionResult<Posts>> PostPosts(Posts posts)
+        public async Task<ActionResult<string>> PostPosts(Posts posts)
         {
-            _context.Posts.Add(posts);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Posts.Add(posts);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetPosts", new { id = posts.Id }, posts);
+                return Ok("Posted Successfully");
+            }
+            catch 
+            {
+                return BadRequest("Unable to post, Try again later");
+            }
+
         }
 
         // DELETE: api/Posts/5

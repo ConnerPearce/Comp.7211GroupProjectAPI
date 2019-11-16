@@ -38,7 +38,7 @@ namespace Comp._7211GroupProjectAPI.Controllers
         // Used to update (Easier, less complicated and easier to specify individual changes)
         // POST: api/Settings
         [HttpPost]
-        public async Task<ActionResult> PostSettings(Settings settings)
+        public async Task<ActionResult<string>> PostSettings(Settings settings)
         {
             var currentSettings = await _context.Settings.Where(e => e.Id == settings.Id).FirstAsync();
             if (currentSettings != null)
@@ -47,10 +47,10 @@ namespace Comp._7211GroupProjectAPI.Controllers
 
                 await _context.SaveChangesAsync();
 
-                return Ok();
+                return Ok("Settings Updated successfully");
             }
             else
-                return NotFound();
+                return BadRequest("Settings unable to be updated");
         }
 
 
