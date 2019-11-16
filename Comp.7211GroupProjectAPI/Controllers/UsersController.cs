@@ -21,18 +21,13 @@ namespace Comp._7211GroupProjectAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Users
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
-        {
-            return await _context.Users.ToListAsync();
-        }
 
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Users>> GetUsers(int id)
+
+        // GET: api/Users/userID=5
+        [HttpGet("{userID=id}")]
+        public async Task<ActionResult<Users>> GetUsers(string id)
         {
-            var users = await _context.Users.FindAsync(id);
+            var users = await _context.Users.Where(e => e.Uid == id).FirstOrDefaultAsync();
 
             if (users == null)
             {
