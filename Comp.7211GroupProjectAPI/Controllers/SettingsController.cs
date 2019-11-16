@@ -35,65 +35,24 @@ namespace Comp._7211GroupProjectAPI.Controllers
             return settings;
         }
 
-        // PUT: api/Settings/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutSettings(int id, Settings settings)
-        {
-            if (id != settings.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(settings).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!SettingsExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
+        // Used to update (Easier, less complicated and easier to specify individual changes)
         // POST: api/Settings
         [HttpPost]
-        public async Task<ActionResult<Settings>> PostSettings(Settings settings)
+        public async Task<ActionResult> PostSettings(Settings settings)
         {
-            _context.Settings.Add(settings);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetSettings", new { id = settings.Id }, settings);
-        }
-
-        // DELETE: api/Settings/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Settings>> DeleteSettings(int id)
-        {
-            var settings = await _context.Settings.FindAsync(id);
-            if (settings == null)
+            var currentSettings = await _context.Settings.Where(e => e.Id == settings.Id).FirstAsync();
+            if (currentSettings != null)
             {
-                return NotFound();
+                currentSettings.AppTheme = settings.AppTheme;
+
+                await _context.SaveChangesAsync();
+
+                return Ok();
             }
-
-            _context.Settings.Remove(settings);
-            await _context.SaveChangesAsync();
-
-            return settings;
+            else
+                return NotFound();
         }
 
-        private bool SettingsExists(int id)
-        {
-            return _context.Settings.Any(e => e.Id == id);
-        }
+
     }
 }

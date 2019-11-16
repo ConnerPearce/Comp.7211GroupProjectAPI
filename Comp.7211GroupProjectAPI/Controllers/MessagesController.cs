@@ -21,19 +21,6 @@ namespace Comp._7211GroupProjectAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Messages/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Messages>> GetMessages(int id)
-        {
-            var messages = await _context.Messages.FindAsync(id);
-
-            if (messages == null)
-            {
-                return NotFound();
-            }
-
-            return messages;
-        }
 
         // GET: api/Messages/userID=27033991
         [HttpGet("userID={user}")]

@@ -21,20 +21,6 @@ namespace Comp._7211GroupProjectAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Comments/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Comments>> GetComments(int id)
-        {
-            var comments = await _context.Comments.FindAsync(id);
-
-            if (comments == null)
-            {
-                return NotFound();
-            }
-
-            return comments;
-        }
-
         // GET: api/Comments/postID=2
         [HttpGet("postID={id})")]
         public async Task<ActionResult<IEnumerable<Comments>>> GetCommentsBypost(int id)

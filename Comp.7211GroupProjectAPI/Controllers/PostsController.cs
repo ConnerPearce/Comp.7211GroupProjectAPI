@@ -28,20 +28,6 @@ namespace Comp._7211GroupProjectAPI.Controllers
             return await _context.Posts.ToListAsync();
         }
 
-        // GET: api/Posts/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Posts>> GetPosts(int id)
-        {
-            var posts = await _context.Posts.FindAsync(id);
-
-            if (posts == null)
-            {
-                return NotFound();
-            }
-
-            return posts;
-        }
-
         // POST: api/Posts
         [HttpPost]
         public async Task<ActionResult<Posts>> PostPosts(Posts posts)
