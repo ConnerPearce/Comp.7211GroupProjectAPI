@@ -34,7 +34,16 @@ namespace Comp._7211GroupProjectAPI.Controllers
         {
             try
             {
-                _context.Posts.Add(posts);
+                var temp = await _context.Posts.Where(e => e.Id == posts.Id).FirstAsync();
+                if (temp != null)
+                {
+                    temp.Post = posts.Post;
+                    temp.UpVote = posts.UpVote;
+                    temp.DownVote = posts.DownVote;
+                }
+                else
+                    _context.Posts.Add(posts);
+
                 await _context.SaveChangesAsync();
 
                 return Ok("Posted Successfully");
@@ -46,20 +55,21 @@ namespace Comp._7211GroupProjectAPI.Controllers
 
         }
 
+
         // DELETE: api/Posts/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Posts>> DeletePosts(int id)
+        public async Task<ActionResult<string>> DeletePosts(int id)
         {
             var posts = await _context.Posts.FindAsync(id);
             if (posts == null)
             {
-                return NotFound();
+                return NotFound("Unable to delete");
             }
 
             _context.Posts.Remove(posts);
             await _context.SaveChangesAsync();
 
-            return posts;
+            return Ok("Deleted post");
         }
     }
 }

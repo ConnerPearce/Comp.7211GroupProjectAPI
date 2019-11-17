@@ -38,7 +38,12 @@ namespace Comp._7211GroupProjectAPI.Controllers
         {
             try
             {
-                _context.Comments.Add(comments);
+                var temp = await _context.Comments.Where(e => e.Id == comments.Id).FirstAsync();
+                if (temp != null)
+                    temp.Comment = comments.Comment;
+                else
+                    _context.Comments.Add(comments);
+
                 await _context.SaveChangesAsync();
 
                 return Ok("Comment Added");
