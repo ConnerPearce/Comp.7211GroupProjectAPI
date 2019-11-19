@@ -30,8 +30,7 @@ namespace Comp._7211GroupProjectAPI.Controllers
             if (userMessages != null)
                 return Ok(userMessages);
             else
-                return NotFound();
-            
+                return NotFound();         
         }
      
         // POST: api/Messages

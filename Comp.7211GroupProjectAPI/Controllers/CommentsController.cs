@@ -22,7 +22,7 @@ namespace Comp._7211GroupProjectAPI.Controllers
         }
 
         // GET: api/Comments/postID=2
-        [HttpGet("postID={id})")]
+        [HttpGet("postID={id}")]
         public async Task<ActionResult<IEnumerable<Comments>>> GetCommentsBypost(int id)
         {
             var commentsOnPost = await _context.Comments.Where(e => e.PostId == id).ToListAsync();

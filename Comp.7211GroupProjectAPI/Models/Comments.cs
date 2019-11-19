@@ -17,3 +17,4 @@ namespace Comp._7211GroupProjectAPI.Models
         public virtual Users U { get; set; }
     }
 }
+`
