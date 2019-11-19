@@ -34,15 +34,8 @@ namespace Comp._7211GroupProjectAPI.Controllers
         {
             try
             {
-                var temp = await _context.Posts.Where(e => e.Id == posts.Id).FirstAsync();
-                if (temp != null)
-                {
-                    temp.Post = posts.Post;
-                    temp.UpVote = posts.UpVote;
-                    temp.DownVote = posts.DownVote;
-                }
-                else
-                    _context.Posts.Add(posts);
+
+                _context.Posts.Add(posts);
 
                 await _context.SaveChangesAsync();
 
